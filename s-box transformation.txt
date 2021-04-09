@@ -1,0 +1,35 @@
+library ieee;
+
+use ieee.std_logic_1164.all;
+use ieee.std_logic_arith.all;
+use work.rijndael_package.all;
+
+entity byte_sub is
+
+port (state: in STD_LOGIC_VECTOR(7 downto 0);
+
+clk: in std_logic; rst: in std_logic;
+b: out STD_LOGIC_VECTOR(7 downto 0));
+
+end entity byte_sub;
+
+
+architecture top_aes_RTL of byte_sub is
+
+begin
+
+process (clk) is
+
+begin
+
+if rst = '1' then
+
+b <= (others => '0');
+elsif (clk='1' and clk'event) then
+b <= SBOX_LOOKUP( state);
+end if;
+
+end process;
+
+end architecture top_aes_RTL;
+ 

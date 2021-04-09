@@ -1,0 +1,34 @@
+library ieee;
+
+use ieee.std_logic_1164.all;
+use ieee.std_logic_arith.all;
+use work.rijndael_package.all;
+
+entity shift_row is
+
+port (state: in STD_LOGIC_VECTOR(127 downto 0);
+
+clk: in std_logic; rst: in std_logic;
+DATAOUT: out STD_LOGIC_VECTOR(127 downto 0));
+
+end entity shift_row;
+
+
+architecture top_aes_RTL of shift_row is
+
+begin
+
+process (clk) is
+
+begin
+
+if rst = '1' then
+
+DATAOUT <= (others => '0');
+elsif (clk='1' and clk'event) then
+DATAOUT <= SHIFT_ROW_FUNCT(state); end if;
+
+end process;
+
+end architecture top_aes_RTL;
+ 

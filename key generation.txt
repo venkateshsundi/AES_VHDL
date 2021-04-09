@@ -1,0 +1,30 @@
+library ieee;
+
+use ieee.std_logic_1164.all;
+use ieee.std_logic_arith.all;
+use work.rijndael_package.all;
+
+entity key_gen is
+
+port (roundkey: in STD_LOGIC_VECTOR(127 downto 0);
+
+round: in round_type;
+DATAOUT: out STD_LOGIC_VECTOR(127 downto 0));
+
+end entity key_gen;
+
+
+architecture top_aes_RTL of key_gen is
+
+begin
+
+process (roundkey, round) is
+
+begin
+
+DATAOUT <= ROUNDKEY_GEN(roundkey, round);
+
+end process;
+
+end architecture top_aes_RTL;
+ 
